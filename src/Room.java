@@ -74,7 +74,7 @@ public class Room extends JPanel implements ComponentListener, MouseListener
     @Override
     public void mouseReleased(MouseEvent e)
     {
-        
+
     }
 
     @Override
