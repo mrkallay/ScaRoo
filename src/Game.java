@@ -67,8 +67,8 @@ public class Game implements KeyListener
         topPanel.setBackground(Color.BLACK);
         topPanel.addKeyListener(this);
 
-        LayoutManager overlay = new OverlayLayout(topPanel);
-        topPanel.setLayout(overlay);
+        //LayoutManager overlay = new OverlayLayout(topPanel);
+        topPanel.setLayout(new BorderLayout());
 
         room = new Room();
         topPanel.add(room);

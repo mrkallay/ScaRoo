@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 public class Room extends JPanel implements ComponentListener, MouseListener
@@ -16,31 +17,44 @@ public class Room extends JPanel implements ComponentListener, MouseListener
     private BufferedImage background;
     private String backgroundPath = System.getProperty("user.dir") + File.separator + "images" + File.separator + "rm.jpg";
 
-    private BufferedImage box;
-    private String boxPath = System.getProperty("user.dir") + File.separator + "images" + File.separator + "box.png";
-
+    private Element box;
+    private ArrayList<Element> boxes;
 
     public Room() throws Exception
     {
         addComponentListener(this);
         setDoubleBuffered(true);
+
+        //TODO: fixme! this doesn't work because the panel has no height/width until added to a container
         this.frameWidth = getWidth();
         this.frameHeight = getHeight();
+
         File backgroundFile = new File(backgroundPath);
         background = ImageIO.read(backgroundFile);
 
-        File  boxFile = new File(boxPath);
-        box = ImageIO.read(boxFile);
+        box = new Element("box.png", "box_open.png", 637, 850, 100, 100);
+        this.add(box);
 
+        //boxes = new ArrayList<>();
+        //int x = 10;
+        //int y = 850;
+        //for(int i=0;i<20;i++)
+        //{
+          //  Element ox = new Element("box.png", "box_open.png", x, y, 100, 100);
+          //  this.add(ox);
+          //boxes.add(ox);
+          //  x+=101;
+        //}
+
+        this.setLayout(null);
         this.addMouseListener(this);
     }
 
     @Override
     public void paintComponent(Graphics g) {
-
         super.paintComponent(g);
         g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
-        g.drawImage(box, getWidth()/3, getHeight()-150, 100, 100, this);
+       // g.drawImage(box.getImg(), box.getxPos(), box.getyPos(), box.getWidth(), box.getHeight(), this);
     }
 
 
@@ -62,7 +76,12 @@ public class Room extends JPanel implements ComponentListener, MouseListener
     @Override
     public void mouseClicked(MouseEvent e)
     {
-        System.out.println(MouseInfo.getPointerInfo().getLocation());
+        PointerInfo pi = MouseInfo.getPointerInfo();
+        Point point = new Point(pi.getLocation());
+        SwingUtilities.convertPointFromScreen(point, e.getComponent());
+        int x=(int) point.getX();
+        int y=(int) point.getY();
+        System.out.println("Location: x=" + x + " y=" + y);
     }
 
     @Override
