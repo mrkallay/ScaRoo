@@ -1,5 +1,7 @@
 public interface Puzzle
 {
-    public boolean checkSolution();
-    public boolean isSolved();
+    boolean checkSolution();
+    boolean isSolved();
+
+
 }
