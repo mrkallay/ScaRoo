@@ -1,19 +1,15 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Scanner.*;
 
 public class NumberPuzzleTestClass
 {
     public static void main(String[] args) {
-        ArrayList<Integer> solution = new ArrayList();
-        solution.add(1);
-        solution.add(2);
-        solution.add(3);
+        int lengthOfSolution = 2;
 
-        NumberPuzzle thePuzzle = new NumberPuzzle(solution);
+        NumberPuzzle thePuzzle = new NumberPuzzle(lengthOfSolution);
         int numberInput = -100;
 
-        for (int i = 0; i < solution.size(); i++)
+        for (int i = 0; i < thePuzzle.getLength(); i++)
         {
             Scanner numberInputScanner = new Scanner(System.in);
             System.out.println("INPUT CODE COMBINATION OR INPUT 'reset' to clear your code");

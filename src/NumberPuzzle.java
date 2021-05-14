@@ -5,14 +5,21 @@ public class NumberPuzzle implements Puzzle
 {
     private ArrayList<Integer> display = new ArrayList<>();
 
-    private ArrayList<Integer> solution;
+    private ArrayList<Integer> solution = new ArrayList<>();
+
+    private int length;
 
     private boolean isSolved = false;
 
     //Constructs NumberPuzzle Object with solution
-    public NumberPuzzle(ArrayList<Integer> solution)
+    public NumberPuzzle(int length)
     {
-        this.solution = solution;
+        this.length = length;
+
+        for(int i = 0; i < length; i++)
+        {
+            solution.add((int)((Math.random()*(10))) + 1);
+        }
     }
 
     //Checks solution
@@ -52,5 +59,9 @@ public class NumberPuzzle implements Puzzle
     public void resetDisplay()
     {
         display.clear();
+    }
+    public int getLength()
+    {
+        return length;
     }
 }
